@@ -1,0 +1,47 @@
+<!--IT15021076-->
+<div ng-controller="eventController" class="col-md-offset-2 col-md-8">
+
+    <table class="table table-hover">
+        <thead>
+        <caption><h2>Events that Need Approval</h2></caption>
+        <tr>
+
+            <th>#</th>
+            <th>Event Billed To</th>
+            <th>Event Name</th>
+            <th>Event Date</th>
+            <th>Starting Time</th>
+            <th>Ending Time</th>
+            <th>Total Fee</th>
+            <th>Added Date</th>
+            <th>Approval State</th>
+            <th>Event State</th>
+        </tr>
+        </thead>
+        <a ng-click="getApprovalEvents()" role="button" class="btn btn-danger btn-sm">Refresh</a>
+        <tbody>
+        <tr ng-repeat="evnx in aprevents">
+            <td>{{ evnx.eventid}}</td>
+            <td>{{ evnx.billed_to}}</td>
+            <td>{{ evnx.event_name}}</td>
+            <td>{{ evnx.event_date}}</td>
+            <td>{{ evnx.time_from}}</td>
+            <td>{{ evnx.time_to}}</td>
+            <td>{{ evnx.total_cost}}</td>
+            <td>{{ evnx.added_date}}</td>
+            <td>{{ evnx.approval_state}}</td>
+            <td>{{ evnx.event_state}}</td>
+
+        <!--    <td><a ng-click="getEditEvent(evn.eventid, evn.billed_to, evn.event_name,evn.event_date,evn.time_from,evn.time_to,evn.total_cost,evn.approval_state,evn.added_date,evn.event_state )" role="button"
+                   class="btn btn-warning btn-sm">Edit Event</a>
+            </td>-->
+
+            <td><a ng-click="approveEvent(evnx.eventid)" role="button" class="btn btn-primary btn-sm">Approve Event</a></td>
+
+            <td><a ng-click="rejectEvent(evnx.eventid)" role="button" class="btn btn-danger btn-sm">Reject Event</a></td>
+
+        </tr>
+        </tbody>
+    </table>
+
+</div>

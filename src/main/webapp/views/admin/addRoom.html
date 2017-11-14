@@ -1,0 +1,78 @@
+<!--IT15021076-->
+<div ng-controller="roomController" class="col-md-offset-2 col-md-8">
+
+<form name="addRoomForm" ng-submit="addRoom()">
+
+    <caption><h2>Add new Room</h2></caption>
+
+    <label>Room Description</label>
+    <input type="text" name="room_desk"	class="form-control" ng-model="room_desk" required placeholder="(Sea View, Near Swimming Pool, Forest Side)" />
+
+    <label>Room Capacity</label>
+    <input type="text" name="capacity" class="form-control" ng-model="capacity" required placeholder="Number of People Max"/>
+
+    <label>Room Type</label>
+
+        <select class="form-control" id="room_type" name="room_type" ng-model="room_type" required>
+            <option value="Basic" selected>Basic</option>
+            <option value="AirConditioned">AirConditioned</option>
+            <option value="Fan">Fan</option>
+        </select>
+
+    <label>Room Cost Per Day</label>
+    <input type="text" name="cost_per_day" class="form-control" ng-model="cost_per_day" required placeholder="In LKR"/>
+
+    <div>
+        <label>Room State</label>
+
+        <select class="form-control" id="availability" name="availability" ng-model="availability" required>
+            <option value="Available" selected>Available</option>
+            <option value="Vacant">Vacant</option>
+        </select>
+    </div>
+
+<br>
+    <div class="form-group">
+        <button type="submit" class="btn btn-primary" ng-hide="hideSaveBtn">Add Room to the Hotel</button>
+    </div>
+</form>
+
+        <button class="btn btn-default" ng-click="cancelbtn()" ng-show="showCancelBtn">Cancel</button>
+
+        <button class="btn btn-warning" ng-click="editRoom()" ng-show="showUpdateBtn">Update Room</button>
+
+    <table class="table table-hover">
+        <thead>
+        <caption><h2>Rooms</h2></caption>
+        <tr>
+
+            <th>#</th>
+            <th>Room Description</th>
+            <th>Capacity</th>
+            <th>Type</th>
+            <th>Cost Per Day in LKR</th>
+            <th>Availability</th>
+        </tr>
+        </thead>
+        <!--   //roomid room_desk capacity room_type cost_per_day availability  -->
+        <tbody>
+        <tr ng-repeat="rms in rooms">
+            <td>{{ rms.roomid}}</td>
+            <td>{{ rms.room_desk}}</td>
+            <td>{{ rms.capacity}}</td>
+            <td>{{ rms.room_type}}</td>
+            <td>{{ rms.cost_per_day}}</td>
+            <td>{{ rms.availability}}</td>
+
+
+            <td><a ng-click="getRoomEdit(rms.roomid, rms.room_desk, rms.capacity,rms.room_type,rms.cost_per_day,rms.availability)" role="button"
+                   class="btn btn-warning btn-sm">Update Room</a>
+            </td>
+
+            <td><a ng-click="deleteRoom(rms.roomid)" role="button" class="btn btn-danger btn-sm">Remove Room</a></td>
+
+        </tr>
+        </tbody>
+    </table>
+
+</div>

@@ -1,0 +1,84 @@
+<!--IT15021076-->
+<div ng-controller="employeeController" class="col-md-offset-2 col-md-8">
+
+    <caption><h2>Add New Employee</h2></caption>
+<form name="addEmployeeForm" ng-submit="addEmployee()">
+    <label>Employee ID</label>
+    <input type="text" name="empNo"	class="form-control" ng-model="empNo" required />
+
+    <label>Name</label>
+    <input type="text" name="name"	class="form-control" ng-model="name" required/>
+
+    <label>NIC</label>
+    <input type="text" name="nic"	class="form-control" ng-model="nic" required maxlength="12" />
+
+    <label>Mobile</label>
+    <input type="text" name="mobile"	class="form-control" ng-model="mobile" required maxlength="10" placeholder="Mobile Number"/>
+
+    <label>Email</label>
+    <input type="email" name="email"	class="form-control" ng-model="email" required />
+    <span ng-show="addEmployeeForm.email.$error.email">Not a Valid e-mail address <br></span>
+
+    <label>Password</label>
+    <input type="password" name="password" class="form-control" ng-model="password" required/>
+
+    <label>Salary</label>
+    <input type="text" name="salary" class="form-control" ng-model="salary" placeholder="Type Monthly Salary in LKR"/>
+
+    <label>Type</label>
+    <!--<textarea type="text" class="form-control"
+              name="type"
+              ng-model="type"
+              placeholder="Employee Type"></textarea>-->
+
+        <select class="form-control" id="type" name="type" ng-model="type" required>
+            <option value="Receptionist" selected>Receptionist</option>
+            <option value="Accountant">Accountant</option>
+            <option value="Chef">Chef</option>
+            <option value="Manager">Manager</option>
+            <option value="Admin">Admin / General Manager</option>
+        </select>
+
+<br>
+    <div class="form-group">
+        <button type="submit" class="btn btn-primary" ng-hide="hideSaveBtn">Save</button>
+    </div>
+</form>
+    <button class="btn btn-default" ng-click="cancelbtn()" ng-show="showCancelBtn">Cancel</button>
+    <button class="btn btn-warning" ng-click="editEmployee()" ng-show="showUpdateBtn">Update</button>
+
+<table class="table table-hover">
+    <thead>
+    <caption><h2>Users</h2></caption>
+    <tr>
+        <th>Employee Number</th>
+        <th>Name</th>
+        <th>NIC</th>
+        <th>Mobile</th>
+        <th>Email</th>
+        <th>Salary</th>
+        <th>Type</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    <tr ng-repeat="emp in employees">
+        <td>{{ emp.empNo}}</td>
+        <td>{{ emp.name}}</td>
+        <td>{{ emp.nic }} </td>
+        <td>{{ emp.mobile }}</td>
+        <td>{{ emp.email }}</td>
+        <td>{{ emp.salary}}</td>
+        <td>{{ emp.type }}</td>
+
+        <td><a ng-click="getEditEmployee(emp.eid, emp.empNo, emp.name,emp.nic,emp.mobile,emp.email,emp.salary,emp.type )" role="button"
+               class="btn btn-warning btn-sm">Edit</a>
+        </td>
+        <td><a ng-click="resetPassword(emp.eid)" role="button" class="btn btn-primary btn-sm">Reset Password</a></td>
+
+        <td><a ng-click="deleteEmployee(emp.eid)" role="button" class="btn btn-danger btn-sm">Delete</a></td>
+    </tr>
+    </tbody>
+</table>
+
+</div>

@@ -1,0 +1,70 @@
+<!--IT15021076-->
+<div ng-controller="roomController" class="col-md-offset-2 col-md-8">
+<!--
+    <a ng-click="getAvailableRooms()" role="button" class="btn btn-danger btn-sm">Get Availale Rooms</a>
+    <a ng-click="getVacantRooms()" role="button" class="btn btn-danger btn-sm">Get Vacant Rooms</a>-->
+
+    <a ng-click="reloadRoomBooker()" role="button" class="btn btn-danger btn-sm">Reload</a>
+
+
+    <table class="table table-hover">
+        <thead>
+        <caption><h2>Rooms that are Available</h2></caption>
+        <tr>
+
+            <th>#</th>
+            <th>Room Description</th>
+            <th>Capacity</th>
+            <th>Type</th>
+            <th>Cost Per Day in LKR</th>
+            <th>Availability</th>
+        </tr>
+        </thead>
+
+        <tbody>
+        <tr ng-repeat="avrms in avlrooms">
+            <td>{{ avrms.roomid}}</td>
+            <td>{{ avrms.room_desk}}</td>
+            <td>{{ avrms.capacity}}</td>
+            <td>{{ avrms.room_type}}</td>
+            <td>{{ avrms.cost_per_day}}</td>
+            <td>{{ avrms.availability}}</td>
+
+
+            <td><a ng-click="bookRoom(avrms.roomid)" role="button" class="btn btn-primary btn-sm">Mark Room As Vacant</a></td>
+
+        </tr>
+        </tbody>
+    </table>
+
+
+    <table class="table table-hover">
+        <thead>
+        <caption><h2>Rooms that are Vacant</h2></caption>
+        <tr>
+
+            <th>#</th>
+            <th>Room Description</th>
+            <th>Capacity</th>
+            <th>Type</th>
+            <th>Cost Per Day in LKR</th>
+            <th>Availability</th>
+        </tr>
+        </thead>
+
+        <tbody>
+        <tr ng-repeat="varms in vacrooms">
+            <td>{{ varms.roomid}}</td>
+            <td>{{ varms.room_desk}}</td>
+            <td>{{ varms.capacity}}</td>
+            <td>{{ varms.room_type}}</td>
+            <td>{{ varms.cost_per_day}}</td>
+            <td>{{ varms.availability}}</td>
+
+            <td><a ng-click="freeRoom(varms.roomid)" role="button" class="btn btn-primary btn-sm">Mark Room As Available</a></td>
+
+        </tr>
+        </tbody>
+    </table>
+
+</div>

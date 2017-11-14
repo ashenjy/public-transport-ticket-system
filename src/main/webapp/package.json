@@ -1,0 +1,21 @@
+{
+  "name": "hotel_management_system",
+  "version": "1.0.0",
+  "description": "hotel_management_system",
+  "main": "home.jsp",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "spring",
+    "angularjs"
+  ],
+  "author": "Lahiru , Vimukthi , Ashen , Valuka",
+  "license": "ISC",
+  "dependencies": {
+    "angular": "^1.6.4",
+    "angular-ui-router": "^1.0.0",
+    "bootstrap": "^3.3.7",
+    "jquery": "^3.2.1"
+  }
+}

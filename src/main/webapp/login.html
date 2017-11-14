@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+    <title>Ticketing System</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <!-- LIBRARIES  -->
+    <script type="text/javascript" src="node_modules/angular/angular.js"></script>
+    <script type="text/javascript" src="node_modules/angular-ui-router/release/angular-ui-router.js"></script>
+
+    <link href="node_modules/bootstrap/dist/css/bootstrap.css" rel="stylesheet" />
+    <link href="node_modules/bootstrap/dist/css/bootstrap-theme.css" rel="stylesheet">
+
+    <script type="text/javascript" src="node_modules/jquery/dist/jquery.js"></script>
+    <script type="text/javascript" src="node_modules/bootstrap/dist/js/bootstrap.js"></script>
+    <script type="text/javascript" src="node_modules/angular-ui-bootstrap/dist/ui-bootstrap.js"></script>
+    <script type="text/javascript" src="node_modules/angular-ui-bootstrap/dist/ui-bootstrap-tpls.js"></script>
+    <script type="text/javascript" src="vendor/bootstrap-datepicker/bootstrap-datepicker.min.js"></script>
+
+    <!-- CONTROLLERS -->
+    <script type="text/javascript" src="app.js"></script>
+    <script type="text/javascript" src="js/loginController.js"></script>
+
+</head>
+<body ng-app="app">
+    <div ng-controller="loginController" class="col-md-offset-2 col-md-8">
+<form name="loginForm" ng-submit="findEmployee()">
+
+    <caption><h2>Login - PublIc Transport Ticketing System</h2></caption>
+
+    <label>NIC</label>
+    <input type="text" name="nic" class="form-control" ng-model="nic" maxlength="12" required placeholder="Enter NIC" />
+
+    <label>Password</label>
+    <input type="password" name="password"	class="form-control" ng-model="password" required placeholder="Enter Your Password!" />
+
+    <label>Type</label>
+    <select class="form-control" id="type" name="type" ng-model="type" required>
+        <option value="Receptionist" selected>Receptionist</option>
+        <option value="Accountant">Accountant</option>
+        <option value="Chef">Chef</option>
+        <option value="Manager">Manager</option>
+        <option value="Admin">Admin / General Manager</option>
+    </select>
+
+    <div class="form-group">
+        <button type="submit" class="btn btn-primary">Login</button>
+
+    </div>
+</form>
+
+</div>
+
+</body>
+</html>

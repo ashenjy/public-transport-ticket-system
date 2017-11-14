@@ -1,0 +1,96 @@
+<!--IT15021076-->
+<div ng-controller="eventController" class="col-md-offset-2 col-md-8">
+
+<form name="addEventForm" ng-submit="addEvent()">
+
+    <caption><h2>Add new Event</h2></caption>
+    <label>Event Billed To</label>
+    <input type="text" name="billed_to"	class="form-control" ng-model="billed_to" required placeholder="Billed to " />
+
+    <label>Event Name</label>
+    <input type="text" name="event_name" class="form-control" ng-model="event_name" required placeholder="Event Name"/>
+
+    <label>Event Date</label>
+    <input type="text" name="event_date" class="form-control" ng-model="event_date" required placeholder="Event Date YYYY-MM-DD"/>
+
+    <label>Starting Time</label>
+    <input type="text" name="time_from" class="form-control" ng-model="time_from" placeholder="Starting Time in 24H (17:00)" required/>
+
+    <label>Ending Time</label>
+    <input type="text" name="time_to" class="form-control" ng-model="time_to" required placeholder="Ending Time in 24H (17:00)" />
+
+    <label>Total Fee</label>
+    <input type="text" name="total_cost" class="form-control" ng-model="total_cost" required placeholder="Total Fee in LKR" />
+
+    <label>Added Date</label>
+    <input type="text" name="added_date" class="form-control" ng-model="added_date" placeholder="Added Date YYYY-MM-DD" />
+
+    <label>Approval State</label>
+
+        <select class="form-control" id="approval_state" name="approval_state" ng-model="approval_state" required>
+         <!--   <option value="PreApproved" >PreApproved</option>-->
+            <option value="Pending" selected>Pending</option>
+            <option value="Approved" disabled>Approved</option>
+        </select>
+
+    <div>
+        <label>Event State</label>
+
+        <select class="form-control" id="event_state" name="event_state" ng-model="event_state" required>
+            <option value="Ongoing" selected>Ongoing</option>
+            <option value="Finished">Finished</option>
+        </select>
+    </div>
+
+<br>
+    <div class="form-group">
+        <button type="submit" class="btn btn-primary" ng-hide="hideSaveBtn">Add Event</button>
+    </div>
+</form>
+
+        <button class="btn btn-default" ng-click="cancelbtn()" ng-show="showCancelBtn">Cancel</button>
+
+        <button class="btn btn-warning" ng-click="editEvent()" ng-show="showUpdateBtn">Update</button>
+
+    <table class="table table-hover">
+        <thead>
+        <caption><h2>Events</h2></caption>
+        <tr>
+
+            <th>#</th>
+            <th>Event Billed To</th>
+            <th>Event Name</th>
+            <th>Event Date</th>
+            <th>Starting Time</th>
+            <th>Ending Time</th>
+            <th>Total Fee</th>
+            <th>Added Date</th>
+            <th>Approval State</th>
+            <th>Event State</th>
+        </tr>
+        </thead>
+
+        <tbody>
+        <tr ng-repeat="evn in events">
+            <td>{{ evn.eventid}}</td>
+            <td>{{ evn.billed_to}}</td>
+            <td>{{ evn.event_name}}</td>
+            <td>{{ evn.event_date}}</td>
+            <td>{{ evn.time_from}}</td>
+            <td>{{ evn.time_to}}</td>
+            <td>{{ evn.total_cost}}</td>
+            <td>{{ evn.added_date}}</td>
+            <td>{{ evn.approval_state}}</td>
+            <td>{{ evn.event_state}}</td>
+
+            <td><a ng-click="getEditEvent(evn.eventid, evn.billed_to, evn.event_name,evn.event_date,evn.time_from,evn.time_to,evn.total_cost,evn.approval_state,evn.added_date,evn.event_state )" role="button"
+                   class="btn btn-warning btn-sm">Edit Event</a>
+            </td>
+
+            <td><a ng-click="deleteEvent(evn.eventid)" role="button" class="btn btn-danger btn-sm">Delete</a></td>
+
+        </tr>
+        </tbody>
+    </table>
+
+</div>
