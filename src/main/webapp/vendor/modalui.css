@@ -1,0 +1,9 @@
+table.db-table
+{
+    border-right:1px solid #ccc;
+    border-bottom:1px solid #ccc;
+    text-align:center;  font-size: 15px;
+}
+
+table.db-table th	{ background:#2B6D78;color:#FFFFFF; padding:2px; border-left:1px solid #ccc; border-top:1px solid #ccc; text-align:center; font-weight: normal;}
+table.db-table td	{ background:#FFFFFF;padding:5px; border-left:1px solid #ccc; border-top:1px solid #ccc;  text-align:center;}

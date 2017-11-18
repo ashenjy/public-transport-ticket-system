@@ -1,0 +1,244 @@
+<div class="modal-header " style="  text-align: center; background-color: rgb(0,182,158); color: rgb(255,255,255)">
+    <button type="button" style="color: #ffffff" class="close" ng-click="closeDialog()" aria-hidden="true">x</button>
+    <h2 ng-if="ttt" class="modal-title">Edit Passenger Details</h2>
+    <h3 ng-if="!ttt"  class="modal-title">Add Passenger</h3>
+</div>
+
+<div class="modal-body" style="background-color: rgba(250,229,246,0.38)">
+    <div ng-if="ttt">
+
+        <form name="passengerForm" ng-submit="editPassenger()">
+
+
+
+            <div style="width: 50%;
+    padding: 20px 15px 0 20px;
+    float: left;">
+                <label>NIC  <span class="asteriskContainer text-danger">*</span></label>
+                <input type="text"
+                       name="pnic"
+                       class="form-control"
+                       ng-model="pass.pnic"
+                       placeholder="123456789V" required/>
+
+            </div>
+
+
+
+            <div style="width: 50%;
+    padding: 20px 15px 0 20px;
+    float: left;">
+                <label>Name  <span class="asteriskContainer text-danger">*</span></label>
+                <input type="text"
+                       name="pname"
+                       class="form-control"
+                       ng-model="pass.pname"
+                       placeholder="Passenger Name" required/>
+
+            </div>
+
+
+
+
+
+
+            <div style="width: 50%;
+    padding: 20px 15px 0 20px;
+    float: left;">
+                <label>Mobile No  <span class="asteriskContainer text-danger">*</span></label>
+                <input type="number"
+                       name="pmobile"
+                       class="form-control"
+                       ng-model="pass.pmobile"
+                       required/>
+            </div>
+
+
+
+            <div style="width: 50%;
+    padding: 20px 15px 0 20px;
+    float: left;">
+                <label>Address  <span class="asteriskContainer text-danger">*</span></label>
+                <textarea type="text"
+                          class="form-control"
+                          name="paddress"
+                          ng-model="pass.paddress"
+                          placeholder="Address" required></textarea>
+            </div>
+
+            <div style="width: 50%;
+    padding: 20px 15px 0 20px;
+    float: left;">
+                <label>Date Of Birth  <span class="asteriskContainer text-danger">*</span></label>
+
+                <p class="input-group">
+                    <input type="text"
+                           class="form-control"
+                           uib-datepicker-popup
+                           date-type="string"
+                           ng-model="pass.pdob"
+                           is-open="popup2.opened"
+                           datepicker-options="dateOptions"
+                           ng-required="true"
+                           close-text="Close" />
+                    <span class="input-group-btn">
+								<button type="button"
+                                        class="btn btn-default"
+                                        ng-click="open2()">
+									<i class="glyphicon glyphicon-calendar"></i>
+								</button>
+							</span>
+                </p>
+
+            </div>
+
+            <div style="width: 50%;
+    padding: 20px 15px 0 20px;
+    float: left;">
+                <label>Gender  <span class="asteriskContainer text-danger">*</span></label>
+                <input type="radio"
+                       name="pgender"
+                       ng-model="pass.pgender"
+                       value="Male"/> M
+                <input type="radio"
+                       name="pgender"
+                       ng-model="pass.pgender"
+                       value="Female"/> F
+
+            </div>
+
+
+
+            <div class="modal-footer">
+                <button ng-click="closeDialog()" class="btn btn-warning">Cancel</button>
+                <button type="submit" class="btn btn-primary">Update</button>
+
+            </div>
+
+
+
+        </form>
+
+    </div>
+
+
+    <!----------------------CREATE----------------------------------------------------->
+
+    <div ng-if="!ttt">
+        <form name="passengerForm" ng-submit="savePassenger()">
+
+
+            <div style="width: 80%;
+    padding: 20px 15px 0 230px; ">
+                <label for="pnic">NIC  <span class="asteriskContainer text-danger">*</span></label>
+                <input type="text"
+                       id="pnic"
+                       name="pnic"
+                       class="form-control"
+                       ng-model="pass.pnic"
+                       autocomplete="off"
+                       ng-change="validgrouppname()"
+                       placeholder="123456789V" required/>
+                <div class="form-error" ng-if="vall==1">
+                    <p style="color:red; float:right;">Passenger Already Exist</p>
+                </div>
+
+            </div>
+
+
+
+
+
+            <div style="width: 80%;
+    padding: 20px 15px 0 230px;">
+                <label>Name  <span class="asteriskContainer text-danger">*</span></label>
+                <input type="text"
+                       name="pname"
+                       class="form-control"
+                       ng-model="pass.pname"
+                       placeholder="Passenger Name" required/>
+
+            </div>
+
+
+
+
+
+            <div style="width: 80%;
+    padding: 20px 15px 0 230px;">
+                <label>Mobile No  <span class="asteriskContainer text-danger">*</span></label>
+                <input type="number"
+                       name="pmobile"
+                       class="form-control"
+                       ng-model="pass.pmobile"
+                       required/>
+            </div>
+
+
+
+            <div style="width: 80%;
+    padding: 20px 15px 0 230px;">
+                <label>Address  <span class="asteriskContainer text-danger">*</span></label>
+                <textarea type="text"
+                          class="form-control"
+                          name="paddress"
+                          ng-model="pass.paddress"
+                          placeholder="Address" required></textarea>
+            </div>
+
+            <div style="width: 80%;
+    padding: 20px 15px 0 230px;">
+
+                <label>Date Of Birth  <span class="asteriskContainer text-danger">*</span></label>
+
+                <p class="input-group">
+                    <input type="text"
+                           class="form-control"
+                           uib-datepicker-popup
+                           date-type="string"
+                           ng-model="pass.pdob"
+                           is-open="popup2.opened"
+                           datepicker-options="dateOptions"
+                           ng-required="true"
+                           close-text="Close" />
+                    <span class="input-group-btn">
+								<button type="button"
+                                        class="btn btn-default"
+                                        ng-click="open2()">
+									<i class="glyphicon glyphicon-calendar"></i>
+								</button>
+							</span>
+                </p>
+
+            </div>
+
+            <div style="width: 80%;
+    padding: 20px 15px 0 230px;">
+                <label>Gender  <span class="asteriskContainer text-danger">*</span></label>
+                <input type="radio"
+                       name="pgender"
+                       ng-model="pass.pgender"
+                       value="Male"/> M
+                <input type="radio"
+                       name="pgender"
+                       ng-model="pass.pgender"
+                       value="Female"/> F
+
+            </div>
+
+
+
+            <div class="modal-footer">
+                    <button ng-click="closeDialog()" class="btn btn-warning">Cancel</button>
+                    <button type="submit" ng-disabled="!isValidData()" style=" width: 15%" class="btn btn-primary">Save</button>
+
+                </div>
+
+
+
+        </form>
+    </div>
+
+
+
+</div>

@@ -18,6 +18,12 @@
                 templateUrl:"login.html",
                 controller:"loginController"
 
+                //----Ashen-----------------------------
+                }).state("passengerReg",{
+                url:"/registration",
+                templateUrl:"/views/passenger/passengerRegistration.html",
+                controller:"passengerController"
+
             });
 
         })
