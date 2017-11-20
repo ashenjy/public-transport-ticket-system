@@ -8,7 +8,7 @@ import org.springframework.web.servlet.ModelAndView;
 public class WebController {
 
 	@RequestMapping("/")
-    ModelAndView home(ModelAndView modelAndView) {
+    ModelAndView login(ModelAndView modelAndView) {
 
 		modelAndView.setViewName("login");
 

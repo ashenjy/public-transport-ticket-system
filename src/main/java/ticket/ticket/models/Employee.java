@@ -3,16 +3,13 @@ package ticket.ticket.models;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "Employee")
-public class Employee {
-
+@Table(name = "employee")
+public class Employee
+{
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name="eid")
     private int eid;
-
-    @Column(name = "emp_no")
-    private String empNo;
 
     @Column(name = "name")
     private String name;
@@ -41,14 +38,6 @@ public class Employee {
 
     public void setEid(int eid) {
         this.eid = eid;
-    }
-
-    public String getEmpNo() {
-        return empNo;
-    }
-
-    public void setEmpNo(String empNo) {
-        this.empNo = empNo;
     }
 
     public String getName() {

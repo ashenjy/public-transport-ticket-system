@@ -7,31 +7,23 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-//IT15021076
 @RestController
-public class employeeControllerApi
+public class EmployeeControllerApi
 {
     @Autowired
     EmployeeRepository employeeRepository;
 
     @RequestMapping(value = "/addEmployee", method = RequestMethod.POST)
-    public String addEmployee(@RequestBody Employee employee)
+    public boolean addEmployee(@RequestBody Employee employee)
     {
         employeeRepository.save(employee);
-        return "added employee";
+        return true;
     }
 
-   /* @RequestMapping(value = "/login", method = RequestMethod.GET)
-    public List<Employee> login()
-    {
-        return employeeRepository.findAll();
-
-    }*/
 
     @RequestMapping(value = "/getEmployees", method = RequestMethod.GET)
     public List<Employee> getEmployees()
     {
-       // return employeeRepository.findAllByOrOrderByEmpNoDesc();
        return employeeRepository.findAll();
     }
 
@@ -41,7 +33,6 @@ public class employeeControllerApi
         Employee employeeToEdit=employeeRepository.findEmployeeByEid(eid);
 
         employeeToEdit.setNic(employee.getNic());
-        employeeToEdit.setEmpNo(employee.getEmpNo());
         employeeToEdit.setType(employee.getType());
         employeeToEdit.setSalary(employee.getSalary());
         employeeToEdit.setMobile(employee.getMobile());
@@ -70,13 +61,5 @@ public class employeeControllerApi
         employeeRepository.save(employeeToReset);
         return "employee password reset";
     }
-
-    /*
-    //login
-    @RequestMapping(value = "/login", method = RequestMethod.GET)
-    public List<Employee> login()
-    {
-        return employeeRepository.authenticateEmployee("944444444V","123456");
-    }*/
 
 }
