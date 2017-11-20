@@ -41,7 +41,8 @@
 
 <!-- CONTROLLERS -->
 <script type="text/javascript" src="app.js"></script>
-    <!-- IT15021076 -->
+
+    <script type="text/javascript" src="js/homeController.js"></script>
     <script type="text/javascript" src="js/employeeController.js"></script>
     <script type="text/javascript" src="js/loginController.js"></script>
     <!-- Ashen -->
@@ -50,14 +51,13 @@
 
 
 </head>
-<body ng-app="app">
+<body ng-app="app" ng-controller="homeController">
 <nav class="navbar navbar-inverse" style="padding:5px;">
   <div class="container-fluid">
     <div class="navbar-header">
       <a class="navbar-brand" ui-sref="dashboard"> Ticketing System</a>
     </div>
     <ul class="nav navbar-nav">
-      <li class="active"><a href="#">Employee</a></li>
 
         <li class="dropdown">
             <a href="" data-toggle="dropdown" class="dropdown-toggle">Passenger<b class="caret"></b></a>
@@ -67,40 +67,26 @@
 
             </ul>
         </li>
-        <li class="dropdown">
-            <a href="" data-toggle="dropdown" class="dropdown-toggle">Admin <span class="glyphicon glyphicon-user"></span><span class="caret"></span></a>
 
+        <li class="dropdown">
+            <a href="#" data-toggle="dropdown" class="dropdown-toggle"> Routes <b class="caret"></b></a>
             <ul class="dropdown-menu">
-                <!--<li><a ui-sref="login">Login as different User</a></li>
-                -->
-                <li><a ui-sref="addEmployee">Manage Employee</a></li>
-                <li><a ui-sref="approveEvent">Approve/Reject Event Requests</a></li>
-                <li><a ui-sref="addRoom">Add/Edit/Remove Rooms</a> </li>
+                <li><a ui-sref="manageRoutes">Manage Routes</a></li>
+                <li><a ui-sref="manageRoutePrices">Manage Route Prices</a></li>
             </ul>
         </li>
 
     </ul>
 
-      <!-- IT15021076 -->
-      <!--<li class="dropdown">
-          <a href="" data-toggle="dropdown" class="dropdown-toggle">Manage Events/Rooms<b class="caret"></b></a>
-          <ul class="dropdown-menu">
-              <li><a ui-sref="event">Event Handle</a> </li>
-              <li><a ui-sref="manageRoom">Room Handle</a> </li>
-          </ul>
-      </li>-->
-
-
-      <!-- IT15021076 -->
     <ul class="nav navbar-nav navbar-right">
-    	<li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">User <span class="glyphicon glyphicon-user"></span><span class="caret"></span></a>
+    	<li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">{{ user }}
+            <span class="glyphicon glyphicon-user"></span><span class="caret"></span></a>
         	<ul class="dropdown-menu">
           		<li><a href="#">View/Edit Profile</a></li>
-          		<li><a ui-sref="requestLeaves({nicUrl:'nic8'})">Request Leaves</a></li>
           	</ul>
       	</li>
        
-    	<li><a href="#"><span class="glyphicon glyphicon-log-in"></span> Logout</a></li>
+    	<li><a ng-click="logout()" href="#"><span class="glyphicon glyphicon-log-in"></span> Logout</a></li>
     </ul>
   </div>
 </nav>
