@@ -24,7 +24,13 @@
                 templateUrl:"/views/passenger/passengerRegistration.html",
                 controller:"passengerController"
 
-            });
+            })
+
+                .state("manageRoute",{
+                    url:"/manageRoute",
+                    templateUrl:"/views/admin/manageRoute.html",
+                    controller:"routeController"
+                });
 
         })
 //        .constant("globalConfig", {

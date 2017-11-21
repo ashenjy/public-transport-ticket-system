@@ -24,7 +24,7 @@ public class EmployeeControllerApi
     @RequestMapping(value = "/getEmployees", method = RequestMethod.GET)
     public List<Employee> getEmployees()
     {
-       return employeeRepository.findAll();
+        return employeeRepository.findAll();
     }
 
     @RequestMapping(value = "/editEmployee", method = RequestMethod.PUT)
