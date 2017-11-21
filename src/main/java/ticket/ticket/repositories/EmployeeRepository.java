@@ -8,8 +8,6 @@ import java.util.List;
 
 public interface EmployeeRepository extends JpaRepository<Employee, String>
 {
-    List<Employee> findAll();
-
     @Transactional
     int deleteEmployeeByEid(int eid);
 
