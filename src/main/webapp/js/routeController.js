@@ -18,6 +18,7 @@ angular.module('app').controller('routeController', function($scope, $http, $win
         $http.post("/createRoute", data, config).then(function (response) {
             console.log("Route created successfully");
             $window.alert("Route created successfully");
+            $scope.getRoutes();
         }, function error(response) {
             console.log("Route creation failed");
         });

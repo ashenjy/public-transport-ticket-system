@@ -30,6 +30,12 @@
                     url:"/manageRoute",
                     templateUrl:"/views/admin/manageRoute.html",
                     controller:"routeController"
+                })
+
+                .state("manageRoutePrice",{
+                    url:"/manageRoutePrice",
+                    templateUrl:"/views/admin/manageRoutePrices.html",
+                    controller:"distanceCostController"
                 });
 
         })
