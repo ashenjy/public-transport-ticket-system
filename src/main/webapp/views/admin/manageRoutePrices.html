@@ -1,0 +1,47 @@
+<div ng-controller="distanceCostController" class="col-md-offset-2 col-md-8">
+    <h2> Add the Cost for a Distance</h2>
+    <form class="form-horizontal" name="distanceCostForm" method="post" ng-submit="createDistanceCost()">
+        <div class="form-group">
+            <label class="control-label col-sm-2" for="distance">Distance(km):</label>
+            <div class="col-sm-10">
+                <input type="number" class="form-control" id="distance" name="distance" ng-model="distance" step="0.01"
+                       required>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="control-label col-sm-2" for="cost">Cost(Rs):</label>
+            <div class="col-sm-10">
+                <input type="number" class="form-control" id="cost" name="cost" ng-model="cost" step="0.01" required>
+            </div>
+        </div>
+
+
+        <div class="form-group">
+            <div class="col-sm-10">
+                <input type="submit" class="btn btn-primary" value="Save">
+            </div>
+        </div>
+    </form>
+
+    <!--table to view created distance costs-->
+    <table class="table table-hover">
+        <thead>
+        <caption><h2>Costs</h2></caption>
+        <tr>
+            <th>Distance(km)</th>
+            <th>Cost(Rs)</th>
+        </tr>
+        </thead>
+
+        <tbody>
+        <tr ng-repeat="d in distanceCost">
+            <td>{{ d.distance }}</td>
+            <td>{{ d.cost }}</td>
+            <td><a ng-click="viewEditDetails(r.rId, r.source, r.destination, r.distance)" role="button"
+                   class="btn btn-warning btn-sm">Edit</a> </td>
+            <td><a ng-click="deleteRoute(r.rId)" role="button" class="btn btn-danger btn-sm">Delete</a></td>
+        </tr>
+        </tbody>
+    </table>
+</div>
