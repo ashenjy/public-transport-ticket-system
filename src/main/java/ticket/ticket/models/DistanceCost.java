@@ -11,26 +11,13 @@ import javax.persistence.*;
 public class DistanceCost
 {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "dcid")
-    private int dcId;
-
     @Column(name = "distance")
     private double distance;
 
     @Column(name = "cost")
     private double cost;
 
-    public int getDcId()
-    {
-        return dcId;
-    }
-
-    public void setDcId(int dcId)
-    {
-        this.dcId = dcId;
-    }
-
+    //getters and setters
     public double getDistance()
     {
         return distance;
