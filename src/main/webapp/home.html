@@ -26,6 +26,14 @@
 
     <link href="vendor/modalui.css" rel="stylesheet">
 
+    <script src="//cdn.muicss.com/mui-0.9.29/extra/mui-combined.js"></script>
+    <script src="//cdn.muicss.com/mui-0.9.29/extra/mui-combined.min.js"></script>
+    <script src="//cdn.muicss.com/mui-0.9.29/extra/mui-angular-combined.js"></script>
+    <script src="//cdn.muicss.com/mui-0.9.29/extra/mui-angular-combined.minjs"></script>
+    <script src="//cdn.muicss.com/mui-0.9.29/extra/mui-react-combined.js"></script>
+    <script src="//cdn.muicss.com/mui-0.9.29/extra/mui-react-combined.min.js"></script>
+
+
     <script type="text/javascript">
         function demoFromHTML() {
             var pdf = new jsPDF('p', 'pt', 'a4');
@@ -46,6 +54,7 @@
     <script type="text/javascript" src="js/loginController.js"></script>
     <!-- Ashen -->
     <script type="text/javascript" src="js/passengerController.js"></script>
+    <script type="text/javascript" src="js/mailController.js"></script>
 
 
 
@@ -62,8 +71,8 @@
         <li class="dropdown">
             <a href="" data-toggle="dropdown" class="dropdown-toggle">Passenger<b class="caret"></b></a>
             <ul class="dropdown-menu">
-                <li><a ui-sref="passengerReg">Add New Passenger</a></li>
-                <li><a ui-sref="complaint">Review Complaints</a></li>
+                <li><a ui-sref="passengerReg">Register Passenger</a></li>
+                <li><a ui-sref="review">Review Complaints</a></li>
 
             </ul>
         </li>
@@ -80,15 +89,6 @@
         </li>
 
     </ul>
-
-      <!-- IT15021076 -->
-      <!--<li class="dropdown">
-          <a href="" data-toggle="dropdown" class="dropdown-toggle">Manage Events/Rooms<b class="caret"></b></a>
-          <ul class="dropdown-menu">
-              <li><a ui-sref="event">Event Handle</a> </li>
-              <li><a ui-sref="manageRoom">Room Handle</a> </li>
-          </ul>
-      </li>-->
 
 
       <!-- IT15021076 -->

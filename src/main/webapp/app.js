@@ -19,10 +19,16 @@
                 controller:"loginController"
 
                 //----Ashen-----------------------------
-                }).state("passengerReg",{
+            }).state("passengerReg",{
                 url:"/registration",
                 templateUrl:"/views/passenger/passengerRegistration.html",
                 controller:"passengerController"
+
+            }).state("review",{
+                url:"/reviewComplaint",
+                templateUrl:"/views/passenger/complaintsList.html",
+                controller:"mailController"
+
 
             });
 

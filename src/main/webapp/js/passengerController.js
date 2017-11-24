@@ -151,23 +151,37 @@
 
         //open create new setting field template modal
         vm.openCreateDialog = function(){
-            vm.openCreateNewDialog(false, 0);
+            vm.openCreateNewDialog(false,false, 0);
         };
 
         //open view and update dialog
         vm.openViewUpdateDialog = function(pObj){
-            vm.openCreateNewDialog(true, pObj); //pass id of the selected document
+            vm.openCreateNewDialog(false,true, pObj); //pass id of the selected document
+        };
+
+        vm.openCardDetailsDialog= function(pObj){
+            vm.openCreateNewDialog(true,0, pObj); //pass id of the selected document
         };
 
         //Create and Update dialog
-        vm.openCreateNewDialog = function(isOnViewMode,pObj){
+        vm.openCreateNewDialog = function(isOnCardMode,isOnViewMode,pObj){
 
 
+            console.log(isOnCardMode,isOnViewMode,pObj);
 
             var newScope = $scope.$new();
 
             newScope.isOnViewMode = isOnViewMode;
+            newScope.isOnCardMode = isOnCardMode;
 
+            var size = '';
+
+            if(newScope.isOnCardMode) {
+                 size = 'sm';
+            }
+            else{
+                size = 'lg';
+            }
 
             //--------------------------------------------------------------------------
 
@@ -175,7 +189,7 @@
                 scope: newScope,
                 templateUrl: '/views/passenger/passengerUIModal.html',
                 backdrop: 'static',
-                size: 'lg'
+                size: size
             };
 
 
@@ -189,6 +203,7 @@
             newScope.pass = {};
 
             newScope.ttt = false;
+            newScope.cardMode = false;
 
             //-----------EDIT MODE-------------------------------------------------------
 
@@ -197,6 +212,8 @@
                 newScope.ttt = true;
 
                 var date1 = new Date(pObj.pdob);
+                var issue = new Date(pObj.issueDate);
+                var expiry = new Date(pObj.expiryDate);
 
                 newScope.pass={
                     pnic : pObj.pnic,
@@ -204,7 +221,13 @@
                     paddress : pObj.paddress,
                     pmobile : parseInt(pObj.pmobile),
                     pgender : pObj.pgender,
-                    pdob : date1
+                    pdob : date1,
+                    passengerEmail:pObj.passengerEmail,
+                    cardNo : pObj.cardNo,
+                    issueDate: issue,
+                    expiryDate: expiry,
+                    validity: pObj.validity,
+                    balance: parseInt(pObj.balance)
 
                 };
 
@@ -213,7 +236,7 @@
 
                 newScope.editPassenger= function() {
 
-                    console.log("save function called");
+                    console.log("edit Passenger function called");
 
 
                     var url = "/passenger/update/" + pObj.id;
@@ -225,7 +248,13 @@
                         paddress: newScope.pass.paddress,
                         pmobile: newScope.pass.pmobile,
                         pgender:newScope.pass.pgender,
-                        pdob: newScope.pass.pdob
+                        pdob: newScope.pass.pdob,
+                        passengerEmail:newScope.pass.passengerEmail,
+                        cardNo:newScope.pass.cardNo,
+                        issueDate : newScope.pass.issueDate,
+                        expiryDate : newScope.pass.expiryDate,
+                        validity : newScope.pass.validity,
+                        balance : newScope.pass.balance
 
                     };
 
@@ -254,15 +283,38 @@
 
             if (!newScope.isOnViewMode) {
 
+                newScope.randomInt= function(min, max) {
+                    return Math.round(min + Math.random()*(max-min));
+                };
+
+                var index = {}, numbers = [];
+                for (var i=0; i<8; ++i) {
+                    var number;
+                    do {
+                        number = newScope.randomInt(1000, 10000);
+                    } while (index.hasOwnProperty("_"+number));
+                    index["_"+number] = true;
+                    numbers.push(number);
+                }
+
                 newScope.pass={
                     pnic : "",
                     pname :"",
                     paddress : "",
                     pmobile : "",
                     pgender : "",
-                    pdob : ""
+                    pdob : "",
+                    passengerEmail:"",
+                    cardNo:number,
+                    issueDate : "",
+                    expiryDate : "",
+                    validity :"Yes",
+                    balance : parseFloat("0.00")
+
 
                 };
+
+
 
 
                 newScope.savePassenger= function() {
@@ -279,7 +331,13 @@
                             paddress: newScope.pass.paddress,
                             pmobile: newScope.pass.pmobile,
                             pgender:newScope.pass.pgender,
-                            pdob: newScope.pass.pdob
+                            pdob: newScope.pass.pdob,
+                            passengerEmail:newScope.pass.passengerEmail,
+                            cardNo:newScope.pass.cardNo,
+                            issueDate : newScope.pass.issueDate,
+                            expiryDate : newScope.pass.expiryDate,
+                            validity : newScope.pass.validity,
+                            balance : newScope.pass.balance
 
                         };
 
@@ -287,10 +345,13 @@
 
                         $http.post(url, data).then(function (response) {
 
-                            window.alert("Successfully Saved!");
+
+                            if(newScope.pass.passengerEmail !== '' || newScope.pass.passengerEmail !== undefined ) {
+                                newScope.sendEmailConfirmation();
+                            }
                             vm.passengers = response.data;
                             getAll();
-                            newScope.closeDialog();
+
 
                         }, function (response)
                         {
@@ -298,21 +359,64 @@
                         });
 
 
+                    newScope.sendEmailConfirmation= function() {
+
+                        var url = "/passenger/sendEmailPassenger";
+
+                        var emailAdd = {
+                            pname: newScope.pass.pname,
+                            passengerEmail:newScope.pass.passengerEmail
+                        };
+
+                        $http.post(url, emailAdd).then(function (response) {
+
+                            window.alert("Successfully saved. Email Confirm sent!");
+                            newScope.closeDialog();
+
+                        }, function (response)
+                        {
+                            newScope.closeDialog();
+                        });
+
+                    }
+
 
                 };
+
+
+
+            }
+
+            //---------CARD MODE------------------------------------------------
+            if(newScope.isOnCardMode){
+
+                newScope.cardMode = true;
+
+                var issuedate = new Date(pObj.issueDate);
+                var expdate = new Date(pObj.expiryDate);
+
+                newScope.pass={
+                    cardNo : pObj.cardNo,
+                    issueDate : issuedate,
+                    expiryDate : expdate,
+                    validity : pObj.validity,
+                    balance : parseInt(pObj.balance)
+
+                };
+
 
             }
 
             //----------DatePicker---------------------------------------------
             //
-            // newScope.today = function() {
-            //     newScope.pass.pdob = new Date();
-            // };
-            // newScope.today();
-            //
-            // newScope.clear = function() {
-            //     newScope.pass.pdob = null;
-            // };
+            newScope.today = function() {
+                newScope.pass.issueDate = new Date();
+            };
+            newScope.today();
+
+            newScope.clear = function() {
+                newScope.pass.issueDate = null;
+            };
 
             newScope.inlineOptions = {
                 customClass: getDayClass,

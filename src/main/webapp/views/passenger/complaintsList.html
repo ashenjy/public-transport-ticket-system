@@ -1,0 +1,79 @@
+<div ng-controller="mailController as vm" class="col-md-12">
+
+
+
+	<div class="col-md-offset-0 col-md-11 "  style="padding:0 0 10px 50px;" >
+
+		<div class="col-md-3" style="padding: 10px 0 10px 0; float: right">
+			<button class="mui-btn mui-btn--primary" ng-click="vm.openMailHistoryDialog()">MAIL HISTORY</button>
+		</div>
+		<div class="col-md-3" style="padding: 10px 0 15px 0;">
+			<form class="navbar-form" role="search">
+						<div class="input-group">
+							<input type="text" class="form-control"  ng-model="search" placeholder="Search" name="q">
+							<div class="input-group-btn">
+								<button class="btn btn-default" type="submit"><i class="glyphicon glyphicon-search"></i></button>
+							</div>
+						</div>
+					</form>
+		</div>
+
+			<div>
+
+				<div id="complaintTable" style="background-color: white">
+					<!-- Display expenses in a table -->
+					<table  class="table table-condensed table-hover">
+						<thead>
+						<tr style="background-color: #4c4c4c; color: #ffffff; text-align: center;">
+							<th style="text-align: center;">Name</th>
+							<th style="text-align: center;">Email</th>
+							<th style="text-align: center;">Complaint Date</th>
+							<th style="text-align: center;">Description</th>
+							<th style="text-align: center;">Status</th>
+							<th style="text-align: center;">Action</th>
+						</tr>
+						</thead>
+						<tbody>
+						<tr  ng-repeat="c in vm.complaints |  filter: search | limitTo:vm.itemsPerPage:((vm.currentPage -1) * vm.itemsPerPage)">
+							<td style="padding: 20px 0 0 0">{{c.passengerName }}</td>
+							<td style="padding: 20px 0 0 0">{{c.pemail }}</td>
+							<td style="padding: 20px 0 0 0">{{c.complainDate }}</td>
+							<td style="padding: 20px 0 0 0">{{c.complainDesc }}</td>
+							<td ng-click="vm.openComplaintResolveDialog(c)" style="padding: 20px 0 0 0">{{c.complainStatus }}</td>
+							<td>
+								<button  class="mui-btn mui-btn--raised" ng-click="vm.openCreateNewDialog(c)">
+									<span class="glyphicon glyphicon-envelope"></span> Respond</button>
+							</td>
+						</tr>
+						</tbody>
+
+
+					</table>
+
+				</div>
+				<ul uib-pagination style="float:right"
+					total-items="vm.complaints.length"
+					items-per-page="vm.itemsPerPage"
+					ng-model="vm.currentPage"
+					class="pagination-sm"></ul>
+
+
+			</div>
+		<!--</div>-->
+
+
+	</div>
+
+
+
+
+
+
+
+
+
+
+	<br>
+
+
+</div>

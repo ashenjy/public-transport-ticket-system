@@ -5,15 +5,12 @@
 	<div class="col-md-offset-0 col-md-11 "  style="padding:0 0 10px 50px;" >
 
 
-		<nav class="navbar navbar-default" role="navigation">
 
-			<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-				<ul class="nav navbar-nav">
-					<li ng-click="vm.openCreateDialog()"><a href="#">Add New Passenger</a></li>
-
-				</ul>
-				<div class="col-sm-3 col-md-3">
-					<form class="navbar-form" role="search">
+		<div class="col-md-3" style="padding: 10px 0 10px 0;">
+					<button class="mui-btn mui-btn--primary" ng-click="vm.openCreateDialog()">Add New Passenger</button>
+		</div>
+		<div class="col-md-3" style="padding: 10px 0 15px 0;">
+			<form class="navbar-form" role="search">
 						<div class="input-group">
 							<input type="text" class="form-control"  ng-model="search" placeholder="Search" name="q">
 							<div class="input-group-btn">
@@ -21,12 +18,7 @@
 							</div>
 						</div>
 					</form>
-				</div>
-
-			</div><!-- /.navbar-collapse -->
-		</nav>
-		<br>
-		<br>
+		</div>
 
 			<div>
 
@@ -41,17 +33,19 @@
 							<th>Mobile No.</th>
 							<th>DOB</th>
 							<th>Gender</th>
+							<th >Card Number</th>
 							<th colspan="2">Action</th>
 						</tr>
 						</thead>
 						<tbody>
-						<tr class="warning" ng-repeat="p in vm.passengers |  filter: search | limitTo:vm.itemsPerPage:((vm.currentPage -1) * vm.itemsPerPage)">
-							<td ng-click="vm.openViewUpdateDialog(p)">{{p.pnic}}</td>
+						<tr ng-repeat="p in vm.passengers |  filter: search | limitTo:vm.itemsPerPage:((vm.currentPage -1) * vm.itemsPerPage)">
+							<td class="warning" ng-click="vm.openViewUpdateDialog(p)">{{p.pnic}}</td>
 							<td ng-click="vm.openViewUpdateDialog(p)">{{p.pname }}</td>
 							<td ng-click="vm.openViewUpdateDialog(p)">{{p.paddress}}</td>
 							<td ng-click="vm.openViewUpdateDialog(p)">{{p.pmobile}}</td>
 							<td ng-click="vm.openViewUpdateDialog(p)">{{p.pdob | date:'yyyy-MM-dd'}}</td>
 							<td ng-click="vm.openViewUpdateDialog(p)">{{p.pgender}}</td>
+							<td class="warning" ng-click="vm.openCardDetailsDialog(p)">{{p.cardNo}} <button><span class="glyphicon glyphicon-info-sign"></span></button></td>
 
 							<td>
 								<button  class="btn btn-default"
