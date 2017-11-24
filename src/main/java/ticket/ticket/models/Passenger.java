@@ -30,8 +30,63 @@ public class Passenger implements Serializable {
 	@Column(name = "pdob")
 	private String pdob;
 
+	@Column(name = "passengerEmail")
+	private String passengerEmail;
+
 	@Column(name = "cardNo")
 	private String cardNo;
+
+	@Column(name = "issueDate")
+	private String issueDate;
+
+	@Column(name = "expiryDate")
+	private String expiryDate;
+
+	@Column(name = "validity")
+	private String validity;
+
+	@Column(name = "balance")
+	private Double balance;
+
+	public String getPassengerEmail() {
+		return passengerEmail;
+	}
+
+	public void setPassengerEmail(String passengerEmail) {
+		this.passengerEmail = passengerEmail;
+	}
+
+	public String getIssueDate() {
+		return issueDate;
+	}
+
+	public void setIssueDate(String issueDate) {
+		this.issueDate = issueDate;
+	}
+
+	public String getExpiryDate() {
+		return expiryDate;
+	}
+
+	public void setExpiryDate(String expiryDate) {
+		this.expiryDate = expiryDate;
+	}
+
+	public String getValidity() {
+		return validity;
+	}
+
+	public void setValidity(String validity) {
+		this.validity = validity;
+	}
+
+	public Double getBalance() {
+		return balance;
+	}
+
+	public void setBalance(Double balance) {
+		this.balance = balance;
+	}
 
 	public String getCardNo() {
 		return cardNo;
@@ -101,7 +156,10 @@ public class Passenger implements Serializable {
 
 	}
 
-	public Passenger( String  pnic, String pname , String paddress, String pmobile, String pgender,String pdob,String cardNo) {
+	public Passenger( String  pnic, String pname , String paddress,
+					  String pmobile, String pgender,String pdob,String passengerEmail,
+					  String cardNo,String issueDate,String expiryDate,
+					  String validity, Double balance) {
 
 		this.pnic = pnic;
 		this.pname = pname;
@@ -109,7 +167,12 @@ public class Passenger implements Serializable {
 		this.pmobile = pmobile;
 		this.pgender = pgender;
 		this.pdob = pdob;
+		this.passengerEmail = passengerEmail;
 		this.cardNo = cardNo;
+		this.issueDate = issueDate;
+		this.expiryDate = expiryDate;
+		this.validity = validity;
+		this.balance = balance;
 	}
 
 }

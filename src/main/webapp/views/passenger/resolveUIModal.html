@@ -1,0 +1,31 @@
+<div class="modal-header " style=" background-color: rgb(3,169,244); color: rgb(255,255,255)">
+    <button type="button" style="color: #ffffff" class="close" ng-click="closeDialog()">x</button>
+    <h4 class="modal-title">RESOLVED?</h4>
+</div>
+
+<form name="resolveForm" ng-submit="editComplaint()">
+<div class="modal-body" style="background-color: rgb(255,255,255)">
+
+    <div style="padding: 0 0 0 120px;">
+        <div style="padding:0 0 5px 0">
+        <input type="radio"
+               name="resolveValue"
+               ng-model="com.resolveValue"
+               value="Resolved"/> Yes
+        </div>
+        <div>
+        <input type="radio"
+               name="resolveValue"
+               ng-model="com.resolveValue"
+               value="Not Resolved"/> No
+        </div>
+    </div>
+
+</div>
+
+    <div class="modal-footer" style=" background-color: rgb(3,169,244); color: rgb(255,255,255)">
+        <button ng-click="closeDialog()" class="mui-btn mui-btn--flat">Cancel</button>
+        <button type="submit" class="mui-btn mui-btn--flat">Save</button>
+
+    </div>
+</form>

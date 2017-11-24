@@ -1,0 +1,112 @@
+<div class="modal-header " style=" background-color: rgb(3,169,244); color: rgb(255,255,255)">
+    <button type="button" style="color: #ffffff" class="close" ng-click="closeDialog()">x</button>
+    <h4 ng-if="!mailHist" class="modal-title">SEND MAIL</h4>
+    <h4 ng-if="mailHist" class="modal-title">MAIL HISTORY</h4>
+</div>
+
+<div ng-if="!mailHist">
+<form name="passengerForm" ng-submit="sendEmail()">
+<div class="modal-body" style="background-color: rgb(255,255,255)">
+
+    <div style="width: 80%;
+    padding: 20px 15px 0 230px;">
+        <label>From :  <span class="asteriskContainer text-danger">*</span></label>
+        <input type="text"
+               name="mailFrom"
+               class="form-control"
+               autocomplete="off"
+               ng-model="email.mailFrom"
+               required/>
+
+    </div>
+
+    <div style="width: 80%;
+    padding: 20px 15px 0 230px;">
+        <label>To :  <span class="asteriskContainer text-danger">*</span></label>
+        <input type="text"
+               name="mailTo"
+               class="form-control"
+               autocomplete="off"
+               ng-model="email.mailTo"
+               required/>
+
+    </div>
+    <div style="width: 80%;
+    padding: 20px 15px 0 230px;">
+        <label>Subject :  <span class="asteriskContainer text-danger">*</span></label>
+        <input type="text"
+               name="mailSubject"
+               class="form-control"
+               autocomplete="off"
+               ng-model="email.mailSubject"
+               required/>
+
+    </div>
+    <div style="width: 80%;
+    padding: 20px 15px 0 230px;">
+        <label>Response :  <span class="asteriskContainer text-danger">*</span></label>
+        <textarea type="text"
+               name="mailContent"
+               class="form-control"
+               autocomplete="off"
+               ng-model="email.mailContent"
+                  required></textarea>
+
+    </div>
+</div>
+    <div class="modal-footer">
+        <button ng-click="closeDialog()" class="mui-btn mui-btn--raised">Cancel</button>
+        <button type="submit" style=" width: 15%" class="mui-btn mui-btn--primary">Send Mail</button>
+
+    </div>
+</form>
+</div>
+
+<div ng-if="mailHist">
+
+        <div class="modal-body" style="background-color: rgb(255,255,255)">
+            <form class="navbar-form" role="search">
+                <div class="input-group">
+                    <input type="text" class="form-control"  ng-model="search" placeholder="Search" name="q">
+                    <div class="input-group-btn">
+                        <button class="btn btn-default" type="submit"><i class="glyphicon glyphicon-search"></i></button>
+                    </div>
+                </div>
+            </form>
+            <table class="table table-condensed table-hover">
+                <thead>
+                <tr>
+                    <th>Date</th>
+                    <th>From</th>
+                    <th>To</th>
+                    <th>Subject</th>
+                    <th>Content</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr ng-repeat="m in mails |  filter: search | limitTo:itemsPerPage:((currentPage -1) * itemsPerPage)">
+                    <td>{{m.mailDate | date:'yyyy-MM-dd'}}</td>
+                    <td>{{m.mailFrom }}</td>
+                    <td>{{m.mailTo }}</td>
+                    <td>{{m.mailSubject }}</td>
+                    <td>{{m.mailContent }}</td>
+                </tr>
+                </tbody>
+
+
+            </table>
+
+    <div style="padding:0 0 0 70%;"
+         uib-pagination
+        total-items="mails.length"
+        items-per-page="itemsPerPage"
+        ng-model="currentPage"
+        class="pagination-sm"></div>
+
+        </div>
+
+    <div class="modal-footer"  style=" background-color: rgb(3,169,244); color: rgb(255,255,255)">
+            <button ng-click="closeDialog()" class="mui-btn mui-btn--raised">CLOSE</button>
+    </div>
+
+</div>

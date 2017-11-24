@@ -19,13 +19,18 @@
                 controller:"loginController"
 
                 //----Ashen-----------------------------
-                }).state("passengerReg",{
+            }).state("passengerReg",{
                 url:"/registration",
                 templateUrl:"/views/passenger/passengerRegistration.html",
                 controller:"passengerController"
 
-            })
+            }).state("review",{
+                url:"/reviewComplaint",
+                templateUrl:"/views/passenger/complaintsList.html",
+                controller:"mailController"
 
+
+            })
                 .state("manageRoute",{
                     url:"/manageRoute",
                     templateUrl:"/views/admin/manageRoute.html",
@@ -37,6 +42,7 @@
                     templateUrl:"/views/admin/manageRoutePrices.html",
                     controller:"distanceCostController"
                 });
+
 
         })
 //        .constant("globalConfig", {
