@@ -1,6 +1,5 @@
 angular.module('app').controller('employeeController', function($scope, $http, $window)
 {
-    //IT15021076
     $scope.addEmployee=function ()
     {
         var config = {
