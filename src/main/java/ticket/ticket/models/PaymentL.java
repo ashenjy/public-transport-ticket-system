@@ -22,6 +22,9 @@ public class PaymentL
     @Column(name = "payment_type")
     private String paymentType;
 
+    @Column(name = "amount")
+    private double amount;
+
     //foreign key
     @Column(name = "nic")
     private String nic;
@@ -58,6 +61,16 @@ public class PaymentL
     public void setPaymentType(String paymentType)
     {
         this.paymentType = paymentType;
+    }
+
+    public double getAmount()
+    {
+        return amount;
+    }
+
+    public void setAmount(double amount)
+    {
+        this.amount = amount;
     }
 
     public String getNic()
