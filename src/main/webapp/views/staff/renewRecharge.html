@@ -1,0 +1,58 @@
+<div ng-controller="renewRechargeController" class="col-md-offset-2 col-md-8">
+    <h2> Make Payment</h2>
+    <form class="form-horizontal" name="renewRecharge" method="post" ng-submit="createRenewRecharge()">
+        <div class="form-group">
+            <label class="control-label col-sm-2" for="category">Category:</label>
+            <div class="col-sm-10">
+                <select class="form-control" id="category" name="category" ng-model="category"
+                        ng-options="x for x in categories" required>
+                </select>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="control-label col-sm-2" for="paymentType">Payment Type:</label>
+            <div class="col-sm-10">
+                <select class="form-control" id="paymentType" name="paymentType" ng-model="paymentType"
+                        ng-options="x for x in paymentTypes" required>
+                </select>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="control-label col-sm-2" for="amount">Amount(Rs):</label>
+            <div class="col-sm-10">
+                <input type="number" class="form-control" id="amount" name="amount" ng-model="amount" step="0.01"
+                       required>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-sm-10">
+                <input type="submit" class="btn btn-primary" value="Save">
+            </div>
+        </div>
+    </form>
+
+    <!--table to view created routes-->
+    <table class="table table-hover">
+        <thead>
+        <caption><h2>Payment History</h2></caption>
+        <tr>
+            <th>Category</th>
+            <th>Payment Type</th>
+            <th>Amount(Rs):</th>
+            <th>Payment Date</th>
+        </tr>
+        </thead>
+
+        <tbody>
+        <tr ng-repeat="p in payment">
+            <td>{{ p.category }}</td>
+            <td>{{ p.paymentType }}</td>
+            <td>{{ p.amount }}</td>
+            <td>{{ p.paymentDate | date :  "MM/dd/y" }}</td>
+        </tr>
+        </tbody>
+    </table>
+</div>

@@ -41,11 +41,17 @@
                     url:"/manageRoutePrice",
                     templateUrl:"/views/admin/manageRoutePrices.html",
                     controller:"distanceCostController"
+                })
+
+                .state("renewRecharge",{
+                    url:"/renewRecharge",
+                    templateUrl:"/views/staff/renewRecharge.html",
+                    controller:"renewRechargeController"
                 });
 
 
         })
 //        .constant("globalConfig", {
 //            apiAddress: 'http://localhost:8080/'
-//        });
+//        });     renewRecharge
 })();
