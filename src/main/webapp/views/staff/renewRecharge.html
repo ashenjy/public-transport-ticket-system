@@ -47,13 +47,11 @@
         </thead>
 
         <tbody>
-        <tr ng-repeat="r in routes">
-            <td>{{ r.source }}</td>
-            <td>{{ r.destination }}</td>
-            <td>{{ r.distance }}</td>
-            <td><a ng-click="viewEditDetails(r.rId, r.source, r.destination, r.distance)" role="button"
-                   class="btn btn-warning btn-sm">Edit</a> </td>
-            <td><a ng-click="deleteRoute(r.rId)" role="button" class="btn btn-danger btn-sm">Delete</a></td>
+        <tr ng-repeat="p in payment">
+            <td>{{ p.category }}</td>
+            <td>{{ p.paymentType }}</td>
+            <td>{{ p.amount }}</td>
+            <td>{{ p.paymentDate | date :  "MM/dd/y" }}</td>
         </tr>
         </tbody>
     </table>

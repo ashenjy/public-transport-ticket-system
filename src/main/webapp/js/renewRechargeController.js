@@ -13,37 +13,43 @@ angular.module('app').controller('renewRechargeController', function($scope, $ht
             }
         }
 
+        //current datetime
+        var date=new Date();
+
         var data = {
-            source: $scope.source,
-            destination: $scope.destination,
-            distance:$scope.distance
+            category: $scope.category,
+            paymentType: $scope.paymentType,
+            amount:$scope.amount,
+            paymentDate:date,
+            nic:sessionStorage.nic
         };
 
         $http.post("/createPaymentL", data, config).then(function (response) {
             console.log("createPaymentL created successfully");
             $window.alert("Payment made successfully");
-            $scope.getRoutes();
+            $scope.getPaymentL();
         }, function error(response) {
             console.log("Payment failed");
         });
 
-        $scope.source="";
-        $scope.destination="";
-        $scope.distance="";
+        $scope.category="";
+        $scope.paymentType="";
+        $scope.amount="";
+
     }
 
     //get all the routes
-    $scope.getRoutes=function ()
+    $scope.getPaymentL=function ()
     {
-        $http.get("/getRoutes").then(function (response) {
-            console.log("Routes loaded successfully");
-            $scope.routes=response.data;
+        $http.get("/getPaymentL").then(function (response) {
+            console.log("Payment loaded successfully");
+            $scope.payment=response.data;
         }, function error(response) {
-            console.log("Failed to load routes");
+            console.log("Failed to load getPaymentL");
         });
     }
 
     //execute function to get all the routes
-    $scope.getRoutes();
+    $scope.getPaymentL();
 
 });

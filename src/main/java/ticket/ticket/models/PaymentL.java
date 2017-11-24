@@ -16,9 +16,6 @@ public class PaymentL
     @Column(name = "pid")
     private int pId;
 
-    @Column(name = "category")
-    private String category;
-
     @Column(name = "payment_type")
     private String paymentType;
 
@@ -41,16 +38,6 @@ public class PaymentL
     public void setpId(int pId)
     {
         this.pId = pId;
-    }
-
-    public String getCategory()
-    {
-        return category;
-    }
-
-    public void setCategory(String category)
-    {
-        this.category = category;
     }
 
     public String getPaymentType()
